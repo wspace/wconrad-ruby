@@ -1,4 +1,4 @@
-#!/usr/bin/ruby
+#!/usr/bin/ruby1.8
 
 # whitepsace-ruby
 # Copyright (C) 2003 by Wayne E. Conrad
@@ -67,9 +67,9 @@ class Tokenizer
         @program = $2
         case arg
         when :unsigned
-          return [opcode, eval "0b#{$1.tr(" \t", "01")}"]
+          return [opcode, eval("0b#{$1.tr(" \t", "01")}")]
         when :signed
-          value = eval "0b#{$1[1..-1].tr(" \t", "01")}"
+          value = eval("0b#{$1[1..-1].tr(" \t", "01")}")
           value *= -1 if ($1[0] == ?\t)
           return [opcode, value]
         else
