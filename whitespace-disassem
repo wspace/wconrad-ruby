@@ -68,9 +68,9 @@ class Tokenizer
         @program = $2
         case arg
         when :unsigned
-          return [opcode, eval "0b#{$1.tr(" \t", "01")}"]
+          return [opcode, $1.tr(" \t", "1").to_i(2)]
         when :signed
-          value = eval "0b#{$1[1..-1].tr(" \t", "01")}"
+          value = $1[1..-1].tr(" \t", "01").to_i(2)
           value *= -1 if ($1[0] == ?\t)
           return [opcode, value]
         else
